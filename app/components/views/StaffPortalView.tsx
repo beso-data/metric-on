@@ -332,18 +332,18 @@ export default function StaffPortalView() {
   const myRequests = staffRequests.filter((r) => r.staffName === currentStaff.name);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 p-4 sm:p-6 lg:p-8">
-      <div className="max-w-6xl mx-auto space-y-6">
+    <div className="min-h-screen w-full max-w-full overflow-x-clip bg-slate-950 text-slate-100 p-4 sm:p-6 lg:p-8">
+      <div className="max-w-6xl mx-auto w-full min-w-0 space-y-6">
 
         {/* Top Staff Tablet Header */}
-        <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 shadow-xl">
-          <div className="flex items-center gap-3.5">
-            <div className="h-12 w-12 rounded-2xl bg-blue-500/15 border border-blue-500/40 flex items-center justify-center text-blue-400">
+        <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4 shadow-xl min-w-0">
+          <div className="flex items-start sm:items-center gap-3.5 min-w-0">
+            <div className="h-12 w-12 rounded-2xl bg-blue-500/15 border border-blue-500/40 flex items-center justify-center text-blue-400 shrink-0">
               <UserCheck className="h-6 w-6" />
             </div>
-            <div>
+            <div className="min-w-0">
               <div className="flex flex-wrap items-center gap-2">
-                <h1 className="text-lg sm:text-xl font-black text-white">
+                <h1 className="text-lg sm:text-xl font-black text-white break-words">
                   Staff Portal • {employerConfig?.storeName || 'blysscafe Athens'}
                 </h1>
                 <span className="px-2.5 py-0.5 rounded-lg text-[10px] font-extrabold bg-blue-500/15 text-blue-300 border border-blue-500/30">
@@ -356,13 +356,13 @@ export default function StaffPortalView() {
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-2.5">
-            <div className="flex items-center gap-2 bg-slate-950 px-3 py-2 rounded-xl border border-slate-800 text-xs">
-              <span className="text-slate-400">Εργαζόμενος:</span>
+          <div className="flex flex-wrap items-center gap-2.5 w-full lg:w-auto min-w-0">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-2 bg-slate-950 px-3 py-2 rounded-xl border border-slate-800 text-xs w-full sm:w-auto min-w-0">
+              <span className="text-slate-400 shrink-0">Εργαζόμενος:</span>
               <select
                 value={activeStaffId}
                 onChange={(e) => handleSwitchStaff(Number(e.target.value))}
-                className="bg-slate-900 text-white font-bold px-2.5 py-1 rounded-lg border border-slate-700 focus:outline-none"
+                className="w-full sm:w-auto max-w-full min-w-0 truncate bg-slate-900 text-white font-bold px-2.5 py-1.5 rounded-lg border border-slate-700 focus:outline-none"
               >
                 {STORE_STAFF_PROFILES.map((sp) => (
                   <option key={sp.id} value={sp.id}>
@@ -378,7 +378,7 @@ export default function StaffPortalView() {
                 setAuthRole('owner');
                 notify('👑 Επιστροφή σε Προβολή Εργοδότη / Διαχειριστή.');
               }}
-              className="px-3.5 py-2 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 border border-emerald-500/30 font-extrabold text-xs transition"
+              className="flex-1 sm:flex-initial px-3.5 py-2 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 border border-emerald-500/30 font-extrabold text-xs transition whitespace-nowrap"
             >
               Εναλλαγή σε Εργοδότη
             </button>
@@ -386,7 +386,7 @@ export default function StaffPortalView() {
             <button
               type="button"
               onClick={() => setIsAuthenticated(false)}
-              className="px-3 py-2 rounded-xl bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/25 font-bold text-xs flex items-center gap-1.5 transition"
+              className="px-3 py-2 rounded-xl bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/25 font-bold text-xs flex items-center justify-center gap-1.5 transition shrink-0"
             >
               <LogOut className="h-3.5 w-3.5" />
               <span>Έξοδος</span>
@@ -425,86 +425,86 @@ export default function StaffPortalView() {
             </button>
           </form>
         ) : (
-          <div className="space-y-6">
+          <div className="space-y-6 min-w-0">
             {/* Navigation Pills */}
-            <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5 text-xs">
+            <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5 text-xs min-w-0">
               <button
                 type="button"
                 onClick={() => setStaffTab('shift')}
-                className={`p-3 rounded-xl font-extrabold flex items-center justify-center gap-2 border transition ${
+                className={`p-3 rounded-xl font-extrabold flex items-center justify-center gap-2 border transition min-w-0 ${
                   staffTab === 'shift'
                     ? 'bg-blue-600 text-white border-blue-500 shadow-lg'
                     : 'bg-slate-900 text-slate-300 border-slate-800 hover:border-slate-700'
                 }`}
               >
-                <Clock className="h-4 w-4" />
-                <span>1. Κάρτα & Βάρδιες</span>
+                <Clock className="h-4 w-4 shrink-0" />
+                <span className="truncate">1. Κάρτα & Βάρδιες</span>
               </button>
 
               <button
                 type="button"
                 onClick={() => setStaffTab('cash')}
-                className={`p-3 rounded-xl font-extrabold flex items-center justify-center gap-2 border transition ${
+                className={`p-3 rounded-xl font-extrabold flex items-center justify-center gap-2 border transition min-w-0 ${
                   staffTab === 'cash'
                     ? 'bg-emerald-500 text-slate-950 border-emerald-400 shadow-lg'
                     : 'bg-slate-900 text-slate-300 border-slate-800 hover:border-slate-700'
                 }`}
               >
-                <DollarSign className="h-4 w-4" />
-                <span>2. Παράδοση Ταμείου</span>
+                <DollarSign className="h-4 w-4 shrink-0" />
+                <span className="truncate">2. Παράδοση Ταμείου</span>
               </button>
 
               <button
                 type="button"
                 onClick={() => setStaffTab('stock_waste')}
-                className={`p-3 rounded-xl font-extrabold flex items-center justify-center gap-2 border transition ${
+                className={`p-3 rounded-xl font-extrabold flex items-center justify-center gap-2 border transition min-w-0 ${
                   staffTab === 'stock_waste'
                     ? 'bg-amber-500 text-slate-950 border-amber-400 shadow-lg'
                     : 'bg-slate-900 text-slate-300 border-slate-800 hover:border-slate-700'
                 }`}
               >
-                <Package className="h-4 w-4" />
-                <span>3. Ελλείψεις & Φθορές</span>
+                <Package className="h-4 w-4 shrink-0" />
+                <span className="truncate">3. Ελλείψεις & Φθορές</span>
               </button>
 
               <button
                 type="button"
                 onClick={() => setStaffTab('recipes_sop')}
-                className={`p-3 rounded-xl font-extrabold flex items-center justify-center gap-2 border transition ${
+                className={`p-3 rounded-xl font-extrabold flex items-center justify-center gap-2 border transition min-w-0 ${
                   staffTab === 'recipes_sop'
                     ? 'bg-purple-600 text-white border-purple-500 shadow-lg'
                     : 'bg-slate-900 text-slate-300 border-slate-800 hover:border-slate-700'
                 }`}
               >
-                <Utensils className="h-4 w-4" />
-                <span>4. Συνταγές & Checklist ({completedChecklistCount}/{checklist.length})</span>
+                <Utensils className="h-4 w-4 shrink-0" />
+                <span className="truncate">4. Συνταγές & Checklist ({completedChecklistCount}/{checklist.length})</span>
               </button>
 
               <button
                 type="button"
                 onClick={() => setStaffTab('requests')}
-                className={`p-3 rounded-xl font-extrabold flex items-center justify-center gap-2 border transition col-span-2 sm:col-span-1 ${
+                className={`p-3 rounded-xl font-extrabold flex items-center justify-center gap-2 border transition col-span-2 sm:col-span-1 min-w-0 ${
                   staffTab === 'requests'
                     ? 'bg-slate-700 text-white border-slate-600 shadow-lg'
                     : 'bg-slate-900 text-slate-300 border-slate-800 hover:border-slate-700'
                 }`}
               >
-                <Calendar className="h-4 w-4" />
-                <span>5. Αιτήματα & Άδειες</span>
+                <Calendar className="h-4 w-4 shrink-0" />
+                <span className="truncate">5. Αιτήματα & Άδειες</span>
               </button>
             </div>
 
             {/* TAB 1: Κάρτα & Βάρδιες */}
             {staffTab === 'shift' && (
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                <div className="lg:col-span-5 p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-5">
-                  <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-                    <div>
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 min-w-0">
+                <div className="lg:col-span-5 p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-5 min-w-0">
+                  <div className="flex items-center justify-between gap-2 border-b border-slate-800 pb-3">
+                    <div className="min-w-0">
                       <h2 className="text-base font-extrabold text-white">Ψηφιακή Κάρτα Εργασίας</h2>
                       <p className="text-[11px] text-slate-400">Συγχρονισμός παρουσίας με Εργοδότη</p>
                     </div>
                     <span
-                      className={`px-2.5 py-1 rounded-lg text-[11px] font-extrabold border ${
+                      className={`px-2.5 py-1 rounded-lg text-[11px] font-extrabold border shrink-0 ${
                         clockStatus === 'WORKING'
                           ? 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30'
                           : clockStatus === 'BREAK'
@@ -544,12 +544,12 @@ export default function StaffPortalView() {
                     <span className="text-xs font-bold text-slate-300 block">Σημερινές Κινήσεις Κάρτας:</span>
                     <div className="bg-slate-950 rounded-xl border border-slate-800 divide-y divide-slate-800/70 text-xs">
                       {clockLogs.map((log) => (
-                        <div key={log.id} className="p-3 flex items-center justify-between">
-                          <div>
-                            <span className="font-bold text-white block">{log.action}</span>
+                        <div key={log.id} className="p-3 flex items-center justify-between gap-2">
+                          <div className="min-w-0">
+                            <span className="font-bold text-white block truncate">{log.action}</span>
                             <span className="text-[10px] text-slate-400">{log.staffName}</span>
                           </div>
-                          <div className="text-right font-mono">
+                          <div className="text-right font-mono shrink-0">
                             <span className="text-emerald-400 font-bold block">{log.time}</span>
                             <span className="text-[9px] text-slate-500">Καταχωρήθηκε</span>
                           </div>
@@ -559,7 +559,7 @@ export default function StaffPortalView() {
                   </div>
                 </div>
 
-                <div className="lg:col-span-7 p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-5">
+                <div className="lg:col-span-7 p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-5 min-w-0">
                   <div className="border-b border-slate-800 pb-3">
                     <h2 className="text-base font-extrabold text-white">Το Εβδομαδιαίο Πρόγραμμα Βαρδιών μου</h2>
                     <p className="text-[11px] text-slate-400">
@@ -596,26 +596,26 @@ export default function StaffPortalView() {
 
             {/* TAB 2: Παράδοση Ταμείου */}
             {staffTab === 'cash' && (
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
-                  <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-                    <div>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 min-w-0">
+                <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4 min-w-0">
+                  <div className="flex items-center justify-between gap-2 border-b border-slate-800 pb-3">
+                    <div className="min-w-0">
                       <h2 className="text-base font-extrabold text-white flex items-center gap-2">
-                        <Calculator className="h-4 w-4 text-emerald-400" />
+                        <Calculator className="h-4 w-4 text-emerald-400 shrink-0" />
                         <span>Τυφλή Καταμέτρηση Συρταριού (Blind Cash Count)</span>
                       </h2>
                       <p className="text-[11px] text-slate-400">
                         Το σύνολο αποστέλλεται απευθείας στο Ταμείο & Κλείσιμο Ζ του Εργοδότη.
                       </p>
                     </div>
-                    <span className="text-base font-mono font-black text-emerald-400">
+                    <span className="text-base font-mono font-black text-emerald-400 shrink-0">
                       {countedCashTotal.toFixed(2)} €
                     </span>
                   </div>
 
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-xs">
                     {['50', '20', '10', '5', '2', '1', '0.5'].map((denom) => (
-                      <div key={denom} className="p-3 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-between">
+                      <div key={denom} className="p-3 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-between gap-1">
                         <span className="font-mono font-bold text-slate-300">{denom} € ×</span>
                         <input
                           type="number"
@@ -624,7 +624,7 @@ export default function StaffPortalView() {
                           onChange={(e) =>
                             setDenoms({ ...denoms, [denom]: Math.max(0, parseInt(e.target.value) || 0) })
                           }
-                          className="w-14 px-2 py-1 rounded-lg bg-slate-900 border border-slate-700 text-right font-mono font-bold text-white"
+                          className="w-14 min-w-0 px-2 py-1 rounded-lg bg-slate-900 border border-slate-700 text-right font-mono font-bold text-white"
                         />
                       </div>
                     ))}
@@ -637,7 +637,7 @@ export default function StaffPortalView() {
                       value={handoverNotes}
                       onChange={(e) => setHandoverNotes(e.target.value)}
                       placeholder="π.χ. Αφέθηκαν 150€ ψιλά στο συρτάρι για την επόμενη βάρδια"
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white"
+                      className="w-full max-w-full min-w-0 px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white"
                     />
                   </div>
 
@@ -652,7 +652,7 @@ export default function StaffPortalView() {
                   </button>
                 </div>
 
-                <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+                <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4 min-w-0">
                   <div className="border-b border-slate-800 pb-3">
                     <h2 className="text-base font-extrabold text-white">Καταχώρηση Μικροεξόδων Βάρδιας</h2>
                     <p className="text-[11px] text-slate-400">
@@ -666,7 +666,7 @@ export default function StaffPortalView() {
                       value={shiftExpReason}
                       onChange={(e) => setShiftExpReason(e.target.value)}
                       placeholder="Αιτιολογία (π.χ. Πάγος 2 σακούλες)"
-                      className="sm:col-span-7 px-3 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white"
+                      className="sm:col-span-7 min-w-0 px-3 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white"
                     />
                     <input
                       type="number"
@@ -674,7 +674,7 @@ export default function StaffPortalView() {
                       value={shiftExpAmount}
                       onChange={(e) => setShiftExpAmount(e.target.value)}
                       placeholder="Ποσό €"
-                      className="sm:col-span-3 px-3 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-amber-400 font-mono text-right"
+                      className="sm:col-span-3 min-w-0 px-3 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-amber-400 font-mono text-right"
                     />
                     <button
                       type="submit"
@@ -686,12 +686,12 @@ export default function StaffPortalView() {
 
                   <div className="bg-slate-950 rounded-xl border border-slate-800 divide-y divide-slate-800/70 text-xs max-h-60 overflow-y-auto">
                     {drawerExpenses.map((exp) => (
-                      <div key={exp.id} className="p-3 flex items-center justify-between">
-                        <div>
-                          <span className="font-bold text-white block">{exp.reason}</span>
+                      <div key={exp.id} className="p-3 flex items-center justify-between gap-2">
+                        <div className="min-w-0">
+                          <span className="font-bold text-white block truncate">{exp.reason}</span>
                           <span className="text-[10px] text-slate-500">Ώρα: {exp.time}</span>
                         </div>
-                        <span className="font-mono font-bold text-amber-400">{exp.amount.toFixed(2)} €</span>
+                        <span className="font-mono font-bold text-amber-400 shrink-0">{exp.amount.toFixed(2)} €</span>
                       </div>
                     ))}
                   </div>
@@ -701,8 +701,8 @@ export default function StaffPortalView() {
 
             {/* TAB 3: Ελλείψεις & Φθορές */}
             {staffTab === 'stock_waste' && (
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 min-w-0">
+                <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4 min-w-0">
                   <div className="border-b border-slate-800 pb-3">
                     <h2 className="text-base font-extrabold text-white">Ειδοποίηση Έλλειψης Υλικών / Δήλωση Φθοράς</h2>
                     <p className="text-[11px] text-slate-400">
@@ -715,24 +715,24 @@ export default function StaffPortalView() {
                       <button
                         type="button"
                         onClick={() => setReportType('LOW_STOCK')}
-                        className={`py-2 rounded-xl font-extrabold border transition ${
+                        className={`py-2 px-2 rounded-xl font-extrabold border transition truncate ${
                           reportType === 'LOW_STOCK'
                             ? 'bg-amber-500/20 text-amber-300 border-amber-500/40'
                             : 'bg-slate-950 text-slate-400 border-slate-800'
                         }`}
                       >
-                        📦 Τελειώνει Υλικό (Έλλειψη)
+                        📦 Τελειώνει Υλικό
                       </button>
                       <button
                         type="button"
                         onClick={() => setReportType('WASTE')}
-                        className={`py-2 rounded-xl font-extrabold border transition ${
+                        className={`py-2 px-2 rounded-xl font-extrabold border transition truncate ${
                           reportType === 'WASTE'
                             ? 'bg-red-500/20 text-red-300 border-red-500/40'
                             : 'bg-slate-950 text-slate-400 border-slate-800'
                         }`}
                       >
-                        🔥 Φθορά / Απώλεια (Waste)
+                        🔥 Φθορά / Απώλεια
                       </button>
                     </div>
 
@@ -741,7 +741,7 @@ export default function StaffPortalView() {
                       <select
                         value={reportItem}
                         onChange={(e) => setReportItem(e.target.value)}
-                        className="w-full px-3 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white font-bold"
+                        className="w-full max-w-full min-w-0 px-3 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white font-bold"
                       >
                         <option value="Espresso Beans Taf (Specialty Blend)">Espresso Beans Taf (Specialty Blend)</option>
                         <option value="Γάλα Φρέσκο Πλήρες 3.5%">Γάλα Φρέσκο Πλήρες 3.5%</option>
@@ -760,7 +760,7 @@ export default function StaffPortalView() {
                         value={reportQtyNote}
                         onChange={(e) => setReportQtyNote(e.target.value)}
                         placeholder="π.χ. Έμεινε 1 κιβώτιο γάλατα, χρειάζεται παραγγελία αύριο"
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white"
+                        className="w-full max-w-full min-w-0 px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white"
                       />
                     </div>
 
@@ -774,24 +774,24 @@ export default function StaffPortalView() {
 
                   <div className="space-y-2 pt-2">
                     {stockReports.map((rep) => (
-                      <div key={rep.id} className="p-3 rounded-xl bg-slate-950 border border-slate-800 flex justify-between items-center text-xs">
-                        <div>
-                          <span className={`text-[10px] font-extrabold px-2 py-0.5 rounded mr-2 ${rep.type === 'LOW_STOCK' ? 'bg-amber-500/20 text-amber-300' : 'bg-red-500/20 text-red-300'}`}>
+                      <div key={rep.id} className="p-3 rounded-xl bg-slate-950 border border-slate-800 flex justify-between items-start gap-2 text-xs">
+                        <div className="min-w-0">
+                          <span className={`text-[10px] font-extrabold px-2 py-0.5 rounded mr-2 inline-block ${rep.type === 'LOW_STOCK' ? 'bg-amber-500/20 text-amber-300' : 'bg-red-500/20 text-red-300'}`}>
                             {rep.type === 'LOW_STOCK' ? 'Έλλειψη' : 'Φθορά'}
                           </span>
-                          <span className="font-bold text-white">{rep.item}</span>
+                          <span className="font-bold text-white break-words">{rep.item}</span>
                           <p className="text-[11px] text-slate-400 mt-1">{rep.qtyNote}</p>
                         </div>
-                        <span className="text-[10px] font-mono text-slate-500">{rep.time}</span>
+                        <span className="text-[10px] font-mono text-slate-500 shrink-0">{rep.time}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+                <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4 min-w-0">
                   <div className="border-b border-slate-800 pb-3">
                     <h2 className="text-base font-extrabold text-white flex items-center gap-2">
-                      <Wrench className="h-4 w-4 text-blue-400" />
+                      <Wrench className="h-4 w-4 text-blue-400 shrink-0" />
                       <span>Αναφορά Βλάβης Εξοπλισμού / Μηχανημάτων</span>
                     </h2>
                     <p className="text-[11px] text-slate-400">
@@ -805,7 +805,7 @@ export default function StaffPortalView() {
                       value={equipmentIssue}
                       onChange={(e) => setEquipmentIssue(e.target.value)}
                       placeholder="Περιγράψτε το πρόβλημα..."
-                      className="w-full p-3 rounded-xl bg-slate-950 border border-slate-800 text-white focus:border-blue-500 focus:outline-none"
+                      className="w-full max-w-full min-w-0 p-3 rounded-xl bg-slate-950 border border-slate-800 text-white focus:border-blue-500 focus:outline-none"
                     />
                     <button
                       type="submit"
@@ -818,7 +818,7 @@ export default function StaffPortalView() {
                   <div className="space-y-2">
                     {maintenanceTickets.map((t) => (
                       <div key={t.id} className="p-3 rounded-xl bg-slate-950 border border-blue-500/30 text-xs">
-                        <div className="flex justify-between text-[10px] text-blue-400 font-bold mb-1">
+                        <div className="flex justify-between gap-2 text-[10px] text-blue-400 font-bold mb-1">
                           <span>{t.urgency} • {t.staff}</span>
                           <span>{t.time}</span>
                         </div>
@@ -832,17 +832,17 @@ export default function StaffPortalView() {
 
             {/* TAB 4: Συνταγές & Checklist */}
             {staffTab === 'recipes_sop' && (
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                <div className="lg:col-span-6 p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
-                  <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-                    <div>
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 min-w-0">
+                <div className="lg:col-span-6 p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4 min-w-0">
+                  <div className="flex items-center justify-between gap-2 border-b border-slate-800 pb-3">
+                    <div className="min-w-0">
                       <h2 className="text-base font-extrabold text-white flex items-center gap-2">
-                        <ClipboardCheck className="h-4 w-4 text-emerald-400" />
+                        <ClipboardCheck className="h-4 w-4 text-emerald-400 shrink-0" />
                         <span>Checklist Βάρδιας & HACCP</span>
                       </h2>
                       <p className="text-[11px] text-slate-400">Υποχρεωτικές εργασίες ανοίγματος, λειτουργίας & κλεισίματος</p>
                     </div>
-                    <span className="px-2.5 py-1 rounded-lg bg-emerald-500/15 text-emerald-300 font-mono font-bold text-xs">
+                    <span className="px-2.5 py-1 rounded-lg bg-emerald-500/15 text-emerald-300 font-mono font-bold text-xs shrink-0">
                       {completedChecklistCount} / {checklist.length}
                     </span>
                   </div>
@@ -852,22 +852,22 @@ export default function StaffPortalView() {
                       <div
                         key={task.id}
                         onClick={() => handleToggleChecklist(task.id)}
-                        className={`p-3.5 rounded-xl border cursor-pointer flex items-start justify-between gap-3 transition ${
+                        className={`p-3.5 rounded-xl border cursor-pointer flex items-start justify-between gap-3 transition min-w-0 ${
                           task.completed
                             ? 'bg-emerald-500/10 border-emerald-500/30'
                             : 'bg-slate-950 border-slate-800 hover:border-slate-700'
                         }`}
                       >
-                        <div className="flex items-start gap-2.5">
+                        <div className="flex items-start gap-2.5 min-w-0">
                           <input
                             type="checkbox"
                             checked={task.completed}
                             onChange={() => {}}
-                            className="mt-0.5 h-4 w-4 accent-emerald-500"
+                            className="mt-0.5 h-4 w-4 accent-emerald-500 shrink-0"
                           />
-                          <div>
+                          <div className="min-w-0">
                             <span className="text-[10px] font-bold text-slate-400 block">{task.shiftType}</span>
-                            <span className={`font-bold ${task.completed ? 'line-through text-slate-400' : 'text-white'}`}>
+                            <span className={`font-bold break-words ${task.completed ? 'line-through text-slate-400' : 'text-white'}`}>
                               {task.label}
                             </span>
                           </div>
@@ -882,10 +882,10 @@ export default function StaffPortalView() {
                   </div>
                 </div>
 
-                <div className="lg:col-span-6 p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+                <div className="lg:col-span-6 p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4 min-w-0">
                   <div className="border-b border-slate-800 pb-3">
                     <h2 className="text-base font-extrabold text-white flex items-center gap-2">
-                      <Coffee className="h-4 w-4 text-purple-400" />
+                      <Coffee className="h-4 w-4 text-purple-400 shrink-0" />
                       <span>Οδηγός Παρασκευής & Δοσολογίες (Barista SOP)</span>
                     </h2>
                     <p className="text-[11px] text-slate-400">
@@ -896,7 +896,7 @@ export default function StaffPortalView() {
                   <div className="space-y-3 text-xs">
                     {BARISTA_RECIPES_SOP.map((rec) => (
                       <div key={rec.name} className="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
-                        <div className="flex items-center justify-between">
+                        <div className="flex flex-wrap items-center justify-between gap-2">
                           <h3 className="font-black text-white text-sm">{rec.name}</h3>
                           <span className="text-[10px] px-2 py-0.5 rounded bg-purple-500/15 text-purple-300 border border-purple-500/30 font-bold">
                             {rec.glass}
@@ -916,10 +916,10 @@ export default function StaffPortalView() {
 
             {/* TAB 5: Αιτήματα & Άδειες + Δεσμευμένες Ημέρες Συναδέλφων */}
             {staffTab === 'requests' && (
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 min-w-0">
                 <form
                   onSubmit={handleSubmitRequest}
-                  className="lg:col-span-6 p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4 text-xs"
+                  className="lg:col-span-6 p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4 text-xs min-w-0"
                 >
                   <div className="border-b border-slate-800 pb-3">
                     <h2 className="text-base font-extrabold text-white">Υποβολή Νέου Αιτήματος στον Εργοδότη</h2>
@@ -928,8 +928,8 @@ export default function StaffPortalView() {
                     </p>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 min-w-0">
+                    <div className="min-w-0">
                       <label className="text-slate-400 block mb-1 font-bold">Κατηγορία Αιτήματος:</label>
                       <select
                         value={reqType}
@@ -942,7 +942,7 @@ export default function StaffPortalView() {
                             setAllowPeerVisibility(true);
                           }
                         }}
-                        className="w-full px-3 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white font-bold"
+                        className="w-full max-w-full min-w-0 px-3 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white font-bold"
                       >
                         <option value="Άδεια / Ρεπό">Άδεια / Ρεπό</option>
                         <option value="Αλλαγή Βάρδιας">Αλλαγή Βάρδιας</option>
@@ -950,7 +950,7 @@ export default function StaffPortalView() {
                       </select>
                     </div>
 
-                    <div>
+                    <div className="min-w-0">
                       <label className="text-slate-400 block mb-1 font-bold">
                         {reqType === 'Προκαταβολή Μισθού' ? 'Επιθυμητό Ποσό (€):' : 'Ημερομηνία / Διάστημα:'}
                       </label>
@@ -959,12 +959,12 @@ export default function StaffPortalView() {
                         value={reqDateOrAmount}
                         onChange={(e) => setReqDateOrAmount(e.target.value)}
                         placeholder={reqType === 'Προκαταβολή Μισθού' ? 'π.χ. 100€' : 'π.χ. 25/11/2026 ή 25-27/11'}
-                        className="w-full px-3 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white font-mono"
+                        className="w-full max-w-full min-w-0 px-3 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white font-mono"
                       />
                     </div>
                   </div>
 
-                  <div>
+                  <div className="min-w-0">
                     <label className="text-slate-400 block mb-1 font-bold">Λεπτομέρειες / Σημειώσεις:</label>
                     <textarea
                       rows={3}
@@ -972,19 +972,19 @@ export default function StaffPortalView() {
                       value={reqDetails}
                       onChange={(e) => setReqDetails(e.target.value)}
                       placeholder="π.χ. Αίτημα άδειας για την Τρίτη 25/11..."
-                      className="w-full p-3 rounded-xl bg-slate-950 border border-slate-800 text-white"
+                      className="w-full max-w-full min-w-0 p-3 rounded-xl bg-slate-950 border border-slate-800 text-white"
                     />
                   </div>
 
                   {reqType !== 'Προκαταβολή Μισθού' && (
-                    <label className="flex items-center justify-between gap-3 p-3 rounded-xl bg-slate-950 border border-slate-800 cursor-pointer">
-                      <div className="flex items-center gap-2">
-                        <Eye className="h-4 w-4 text-blue-400 shrink-0" />
-                        <div>
+                    <label className="flex items-center justify-between gap-3 p-3 rounded-xl bg-slate-950 border border-slate-800 cursor-pointer min-w-0">
+                      <div className="flex items-start sm:items-center gap-2 min-w-0">
+                        <Eye className="h-4 w-4 text-blue-400 shrink-0 mt-0.5 sm:mt-0" />
+                        <div className="min-w-0">
                           <span className="font-bold text-white block">
                             Κοινοποίηση δεσμευμένης ημέρας στους συναδέλφους (μετά την έγκριση)
                           </span>
-                          <span className="text-[10px] text-slate-400">
+                          <span className="text-[10px] text-slate-400 block">
                             Βοηθάει να μην ζητήσει άλλος την ίδια μέρα άδεια. Ο Εργοδότης έχει τον τελικό λόγο.
                           </span>
                         </div>
@@ -993,7 +993,7 @@ export default function StaffPortalView() {
                         type="checkbox"
                         checked={allowPeerVisibility}
                         onChange={(e) => setAllowPeerVisibility(e.target.checked)}
-                        className="h-4 w-4 accent-emerald-500"
+                        className="h-4 w-4 accent-emerald-500 shrink-0"
                       />
                     </label>
                   )}
@@ -1006,14 +1006,14 @@ export default function StaffPortalView() {
                   </button>
                 </form>
 
-                <div className="lg:col-span-6 space-y-5 text-xs">
-                  <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
-                    <div className="border-b border-slate-800 pb-2.5 flex items-center justify-between">
-                      <div>
-                        <h2 className="text-sm font-extrabold text-white">Τα Δικά μου Αιτήματα ({currentStaff.name})</h2>
+                <div className="lg:col-span-6 space-y-5 text-xs min-w-0">
+                  <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-3 min-w-0">
+                    <div className="border-b border-slate-800 pb-2.5 flex items-center justify-between gap-2">
+                      <div className="min-w-0">
+                        <h2 className="text-sm font-extrabold text-white truncate">Τα Δικά μου Αιτήματα ({currentStaff.name})</h2>
                         <p className="text-[11px] text-slate-400">Κατάσταση έγκρισης από τον Εργοδότη</p>
                       </div>
-                      <span className="font-mono text-slate-400">{myRequests.length}</span>
+                      <span className="font-mono text-slate-400 shrink-0">{myRequests.length}</span>
                     </div>
 
                     {myRequests.length === 0 ? (
@@ -1021,12 +1021,12 @@ export default function StaffPortalView() {
                     ) : (
                       <div className="space-y-2">
                         {myRequests.map((req) => (
-                          <div key={req.id} className="p-3.5 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-between gap-3">
-                            <div>
-                              <span className="font-extrabold text-white block">
+                          <div key={req.id} className="p-3.5 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-between gap-3 min-w-0">
+                            <div className="min-w-0">
+                              <span className="font-extrabold text-white block truncate">
                                 {req.type} {req.dateOrAmount ? `• ${req.dateOrAmount}` : ''}
                               </span>
-                              <p className="text-[11px] text-slate-400 mt-0.5">{req.details}</p>
+                              <p className="text-[11px] text-slate-400 mt-0.5 break-words">{req.details}</p>
                             </div>
                             <span
                               className={`px-2.5 py-1 rounded-lg text-[10px] font-extrabold border shrink-0 ${
@@ -1045,10 +1045,10 @@ export default function StaffPortalView() {
                     )}
                   </div>
 
-                  <div className="p-5 rounded-2xl bg-slate-900 border border-blue-500/25 space-y-3">
+                  <div className="p-5 rounded-2xl bg-slate-900 border border-blue-500/25 space-y-3 min-w-0">
                     <div className="border-b border-slate-800 pb-2.5">
                       <h3 className="text-sm font-extrabold text-white flex items-center gap-2">
-                        <ShieldCheck className="h-4 w-4 text-blue-400" />
+                        <ShieldCheck className="h-4 w-4 text-blue-400 shrink-0" />
                         <span>Εγκεκριμένες Άδειες & Δεσμευμένες Ημέρες Βάρδιας</span>
                       </h3>
                       <p className="text-[11px] text-slate-400">
@@ -1065,10 +1065,10 @@ export default function StaffPortalView() {
                         {visibleApprovedPeerLeaves.map((item) => (
                           <div
                             key={item.id}
-                            className="p-3 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-between gap-2"
+                            className="p-3 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-between gap-2 min-w-0"
                           >
-                            <div>
-                              <span className="font-bold text-blue-300 block">
+                            <div className="min-w-0">
+                              <span className="font-bold text-blue-300 block truncate">
                                 Δεσμευμένη Ημέρα: {item.dateOrAmount || 'Καθορισμένη ημέρα'} ({item.type})
                               </span>
                               <span className="text-[11px] text-slate-300">
